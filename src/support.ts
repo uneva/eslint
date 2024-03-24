@@ -1,6 +1,6 @@
-import * as packages from "./packages";
+import type * as packages from "./packages";
 
-import { isPackageExists, getPackageInfoSync } from "local-pkg";
+import { getPackageInfoSync, isPackageExists } from "local-pkg";
 
 import process from "node:process";
 
@@ -28,8 +28,8 @@ export function getVueVersion() {
     if (pkg &&
         typeof pkg.version === "string" &&
         !Number.isNaN(+pkg.version[0])) {
-        return +pkg.version[0]
+        return +pkg.version[0];
     }
 
-    return 3
+    return 3;
 }

@@ -9,8 +9,9 @@ export const typescriptCore = tslint.config({
     languageOptions: {
         parser: tslint.parser,
         parserOptions: {
-            sourceType: "module"
-        }
+            sourceType: "module",
+            project: "./tsconfig.json",
+        },
     },
     rules: {
         "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -22,13 +23,13 @@ export const typescriptCore = tslint.config({
         "@typescript-eslint/class-literal-property-style": ["error", "fields"],
         "@typescript-eslint/consistent-type-assertions": ["error", {
             assertionStyle: "as",
-            objectLiteralTypeAssertions: "never"
+            objectLiteralTypeAssertions: "never",
         }],
         "@typescript-eslint/consistent-type-definitions": ["off", "interface"],
         "@typescript-eslint/consistent-type-imports": ["error", {
             disallowTypeAnnotations: false,
             // fixStyle: "inline-type-imports"
-            fixStyle: "separate-type-imports"
+            fixStyle: "separate-type-imports",
         }],
         "@typescript-eslint/default-param-last": "error",
         "@typescript-eslint/dot-notation": ["error", { allowKeywords: true }],
@@ -46,7 +47,7 @@ export const typescriptCore = tslint.config({
         "@typescript-eslint/no-dupe-class-members": "error",
         "@typescript-eslint/no-dynamic-delete": "off",
         "@typescript-eslint/no-empty-function": ["error", {
-            allow: ["arrowFunctions", "functions", "methods"]
+            allow: ["arrowFunctions", "functions", "methods"],
         }],
         "@typescript-eslint/no-empty-interface": "off",
         "@typescript-eslint/no-explicit-any": "off",
@@ -69,7 +70,7 @@ export const typescriptCore = tslint.config({
         "@typescript-eslint/no-mixed-enums": "error",
         "@typescript-eslint/no-namespace": ["error", {
             allowDeclarations: true,
-            allowDefinitionFiles: true
+            allowDefinitionFiles: true,
         }],
         "@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
         "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
@@ -95,18 +96,18 @@ export const typescriptCore = tslint.config({
         "@typescript-eslint/no-unused-expressions": ["error", {
             allowShortCircuit: true,
             allowTernary: true,
-            allowTaggedTemplates: true
+            allowTaggedTemplates: true,
         }],
         "@typescript-eslint/no-unused-vars": ["error", {
             vars: "all",
             args: "after-used",
-            ignoreRestSiblings: true
+            ignoreRestSiblings: true,
         }],
         "@typescript-eslint/no-use-before-define": ["error", {
             functions: false,
             classes: false,
             variables: false,
-            typedefs: false
+            typedefs: false,
         }],
         "@typescript-eslint/no-useless-constructor": "error",
         "@typescript-eslint/no-useless-empty-export": "warn",
@@ -145,7 +146,7 @@ export const typescriptCore = tslint.config({
         "@typescript-eslint/triple-slash-reference": ["error", {
             path: "never",
             types: "always",
-            lib: "always"
+            lib: "always",
         }],
         "@typescript-eslint/typedef": ["error", {
             arrayDestructuring: false,
@@ -158,8 +159,8 @@ export const typescriptCore = tslint.config({
         }],
         "@typescript-eslint/unbound-method": "off",
         "@typescript-eslint/unified-signatures": "off",
-        "@typescript-eslint/use-unknown-in-catch-callback-variable": "off"
-    }
+        "@typescript-eslint/use-unknown-in-catch-callback-variable": "off",
+    },
 }) as FlatESLintConfig[];
 
 export const typescript: FlatESLintConfig[] = [

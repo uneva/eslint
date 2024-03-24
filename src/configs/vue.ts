@@ -23,7 +23,7 @@ const vueShare: Partial<Rules> = {
     "vue/no-mutating-props": "error",
     "vue/no-parsing-error": ["error", {
         "x-invalid-end-tag": false,
-        "invalid-first-character-of-tag-name": false
+        "invalid-first-character-of-tag-name": false,
     }],
     "vue/no-ref-as-operand": "error",
     "vue/no-reserved-component-names": "error",
@@ -72,7 +72,7 @@ const vueShare: Partial<Rules> = {
     "vue/component-definition-name-casing": "off",
     "vue/first-attribute-linebreak": ["error", {
         singleline: "beside",
-        multiline: "below"
+        multiline: "below",
     }],
     "vue/html-closing-bracket-newline": ["error"],
     "vue/html-closing-bracket-spacing": ["error"],
@@ -152,30 +152,38 @@ export const vue: FlatESLintConfig[] = [
             parserOptions: {
                 ecmaFeatures: { jsx: true },
                 extraFileExtensions: [".vue"],
+                // parser:tslint.parser,
                 parser: "@typescript-eslint/parser",
-                sourceType: "module"
-            }
+                sourceType: "module",
+            },
         },
         plugins: {
             "@typescript-eslint": tslint.plugin,
-            vue: pluginVue
+            vue: pluginVue,
         },
-        processor: pluginVue.processor[".vue"],
+        processor: pluginVue.processors[".vue"],
         rules: {
             ...(isVue3 ? vue3 : vue2),
-            ...vueShare
-        }
+            ...vueShare,
+        },
     },
     {
         languageOptions: {
             globals: {
-                $: "readonly",
-                $$: "readonly",
-                $computed: "readonly",
-                $customRef: "readonly",
-                $ref: "readonly",
-                $shallowRef: "readonly",
-                $toRef: "readonly",
+                computed: "readonly",
+                defineEmits: "readonly",
+                defineExpose: "readonly",
+                defineProps: "readonly",
+                onMounted: "readonly",
+                onUnmounted: "readonly",
+                reactive: "readonly",
+                ref: "readonly",
+                shallowReactive: "readonly",
+                shallowRef: "readonly",
+                toRef: "readonly",
+                toRefs: "readonly",
+                watch: "readonly",
+                watchEffect: "readonly",
             },
         },
         plugins: {

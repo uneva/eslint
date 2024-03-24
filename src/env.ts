@@ -1,7 +1,7 @@
 import process from "node:process";
 import * as packages from "./packages";
 
-import { hasAnyPackages, getVueVersion } from "./support";
+import { getVueVersion, hasAnyPackages } from "./support";
 
 export const isInEditor = !!(
     (

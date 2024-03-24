@@ -16,7 +16,7 @@ export type PresetLint = Partial<{
 
 export function unlint(
     config: FlatESLintConfig | FlatESLintConfig[] = [],
-    preset: PresetLint
+    preset: PresetLint = { vue: hasVue, unocss: hasUnocss },
 ): FlatESLintConfig[] {
     const configs = [
         ...ignores,
@@ -25,8 +25,8 @@ export function unlint(
     ];
 
     const {
-        vue: enableVue = hasVue,
-        unocss: enableUnocss = hasUnocss,
+        vue: enableVue,
+        unocss: enableUnocss,
     } = preset;
 
     if (enableVue) {

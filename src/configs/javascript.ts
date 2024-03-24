@@ -10,25 +10,25 @@ export const javascript: FlatESLintConfig[] = [
             globals: {
                 ...globals.browser,
                 ...globals.es2021,
-                ...globals.node
+                ...globals.node,
             },
             parserOptions: {
                 ecmaFeatures: {
-                    jsx: true
+                    jsx: true,
                 },
-                sourceType: "module"
+                sourceType: "module",
             },
-            sourceType: "module"
+            sourceType: "module",
         },
         plugins: {
-            "unused-imports": pluginUnusedImports
+            "unused-imports": pluginUnusedImports,
         },
         rules: {
-            // Possible Problems 
+            // Possible Problems
             "array-callback-return": ["error", { allowImplicit: true }],
             "constructor-super": "error",
             "for-direction": "error",
-            "getter-return": ["error", { "allowImplicit": false }],
+            "getter-return": ["error", { allowImplicit: false }],
             "no-async-promise-executor": "error",
             "no-await-in-loop": "error",
             "no-class-assign": "error",
@@ -36,7 +36,7 @@ export const javascript: FlatESLintConfig[] = [
             "no-cond-assign": ["error", "always"],
             "no-const-assign": "error",
             "no-constant-binary-expression": "error",
-            "no-constant-condition": ["error", { "checkLoops": false }],
+            "no-constant-condition": ["error", { checkLoops: false }],
             "no-constructor-return": "error",
             "no-control-regex": "error",
             "no-debugger": "warn",
@@ -60,7 +60,7 @@ export const javascript: FlatESLintConfig[] = [
             "no-new-native-nonconstructor": "error",
             "no-new-symbol": "error",
             "no-obj-calls": "error",
-            "no-promise-executor-return": ["error", { "allowVoid": false }],
+            "no-promise-executor-return": ["error", { allowVoid: false }],
             "no-prototype-builtins": "error",
             "no-self-assign": "error",
             "no-self-compare": "error",
@@ -84,22 +84,22 @@ export const javascript: FlatESLintConfig[] = [
             "use-isnan": ["error", { enforceForIndexOf: true, enforceForSwitchCase: true }],
             "valid-typeof": ["error", { requireStringLiterals: true }],
 
-            // Suggestions 
+            // Suggestions
             "accessor-pairs": "off",
             "arrow-body-style": ["off", "as-needed", { requireReturnForObjectLiteral: false }],
             "block-scoped-var": "error",
-            "camelcase": "off",
+            camelcase: "off",
             "capitalized-comments": "off",
             "class-methods-use-this": ["off", { exceptMethods: [] }],
-            "complexity": ["off", 10],
+            complexity: ["off", 10],
             "consistent-return": "off",
             "consistent-this": "off",
-            "curly": ["error", "multi-line"],
+            curly: ["error", "multi-line"],
             "default-case": ["warn", { commentPattern: "^no default$" }],
             "default-case-last": "error",
             "default-param-last": "error",
             "dot-notation": ["error", { allowKeywords: true }],
-            "eqeqeq": ["error", "smart"],
+            eqeqeq: ["error", "smart"],
             "func-name-matching": ["off", "always", { includeCommonJSModuleExports: false }],
             "func-names": "off",
             "func-style": "off",
@@ -151,7 +151,7 @@ export const javascript: FlatESLintConfig[] = [
                 boolean: false,
                 number: true,
                 string: true,
-                allow: []
+                allow: [],
             }],
             "no-implicit-globals": "off",
             "no-implied-eval": "error",
@@ -167,7 +167,7 @@ export const javascript: FlatESLintConfig[] = [
                 ignore: [],
                 ignoreArrayIndexes: true,
                 enforceConst: true,
-                detectObjects: false
+                detectObjects: false,
             }],
             "no-mixed-operators": ["error", {
                 groups: [
@@ -274,7 +274,7 @@ export const javascript: FlatESLintConfig[] = [
                 },
                 {
                     enforceForRenamedProperties: false,
-                }
+                },
             ],
             "prefer-exponentiation-operator": "error",
             "prefer-named-capture-group": "off",
@@ -287,7 +287,7 @@ export const javascript: FlatESLintConfig[] = [
             "prefer-spread": "error",
             "prefer-template": "error",
             "quote-props": ["error", "as-needed", { keywords: false, unnecessary: true, numbers: false }],
-            "radix": ["error", "as-needed"],
+            radix: ["error", "as-needed"],
             "require-await": "error",
             "require-unicode-regexp": "off",
             "require-yield": "error",
@@ -318,10 +318,10 @@ export const javascript: FlatESLintConfig[] = [
                     },
                 },
             ],
-            "strict": "off",
+            strict: "off",
             "symbol-description": "error",
             "vars-on-top": "error",
-            "yoda": ["error", "never", { exceptRange: true }],
+            yoda: ["error", "never", { exceptRange: true }],
 
             // Layout & Formatting
             "array-bracket-newline": "off",
@@ -342,7 +342,7 @@ export const javascript: FlatESLintConfig[] = [
             "function-paren-newline": ["error", "consistent"],
             "generator-star-spacing": ["error", { before: false, after: true }],
             "implicit-arrow-linebreak": ["error", "beside"],
-            "indent": ["error", 4, { SwitchCase: 1 }],
+            indent: ["error", 4, { SwitchCase: 1 }],
             "jsx-quotes": ["error", "prefer-double"],
             "key-spacing": ["error", { beforeColon: false, afterColon: true, mode: "strict" }],
             "keyword-spacing": ["error", {
@@ -351,13 +351,13 @@ export const javascript: FlatESLintConfig[] = [
                 overrides: {
                     return: { after: true },
                     throw: { after: true },
-                    case: { after: true }
-                }
+                    case: { after: true },
+                },
             }],
             "line-comment-position": ["off", {
                 position: "above",
                 ignorePattern: "",
-                applyDefaultPatterns: true
+                applyDefaultPatterns: true,
             }],
             "linebreak-style": "off",
             "lines-around-comment": "off",
@@ -369,7 +369,7 @@ export const javascript: FlatESLintConfig[] = [
                 ignoreComments: false,
                 ignoreRegExpLiterals: true,
                 ignoreStrings: true,
-                ignoreTemplateLiterals: true
+                ignoreTemplateLiterals: true,
             }],
             "max-statements-per-line": ["off", { max: 1 }],
             "multiline-ternary": ["off", "never"],
@@ -379,7 +379,7 @@ export const javascript: FlatESLintConfig[] = [
                 conditionalAssign: true,
                 nestedBinaryExpressions: false,
                 returnAssign: false,
-                ignoreJSX: 'all', // delegate to eslint-plugin-react
+                ignoreJSX: "all", // delegate to eslint-plugin-react
                 enforceForArrowConditionals: false,
             }],
             "no-mixed-spaces-and-tabs": "error",
@@ -395,23 +395,23 @@ export const javascript: FlatESLintConfig[] = [
             "operator-linebreak": "off",
             "padded-blocks": ["warn", { blocks: "never", classes: "never", switches: "never" }],
             "padding-line-between-statements": "off",
-            "quotes": ["error", "double", { avoidEscape: true, allowTemplateLiterals: false }],
+            quotes: ["error", "double", { avoidEscape: true, allowTemplateLiterals: false }],
             "rest-spread-spacing": ["error", "never"],
-            "semi": ["error", "always"],
+            semi: ["error", "always"],
             "semi-spacing": ["error", { before: false, after: true }],
             "semi-style": ["error", "last"],
             "space-before-blocks": "error",
             "space-before-function-paren": ["error", {
                 anonymous: "always",
                 named: "never",
-                asyncArrow: "always"
+                asyncArrow: "always",
             }],
             "space-in-parens": ["error", "never"],
             "space-infix-ops": "error",
             "space-unary-ops": ["error", {
                 words: true,
                 nonwords: false,
-                overrides: {}
+                overrides: {},
             }],
             "switch-colon-spacing": ["error", { after: true, before: false }],
             "template-curly-spacing": "off",
@@ -424,9 +424,9 @@ export const javascript: FlatESLintConfig[] = [
             "unused-imports/no-unused-imports": isInEditor ? "off" : "error",
             "unused-imports/no-unused-vars": ["error", {
                 args: "after-used",
-                ignoreRestSiblings: true
+                ignoreRestSiblings: true,
             }],
-        }
+        },
     },
     {
         files: ["**/scripts/*", "**/spec/*", "**/test/*", "**/cli.*"],
