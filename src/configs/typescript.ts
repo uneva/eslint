@@ -1,17 +1,24 @@
 import type { FlatESLintConfig } from "eslint-define-config";
+import { defineFlatConfig } from "eslint-define-config";
+import { GLOB_TS, GLOB_TSX } from "../globs";
 
-import { GLOB_JS, GLOB_TS, GLOB_TSX } from "../globs";
-import { tslint } from "../plugins";
+import tseslint from "typescript-eslint";
+import process from "node:process";
 
-export const typescriptCore = tslint.config({
-    extends: [...tslint.configs.recommended],
+export const typescriptFlatESLintConfig = tseslint.config({
+    extends: [...tseslint.configs.recommended],
     files: [GLOB_TS, GLOB_TSX],
     languageOptions: {
-        parser: tslint.parser,
+        parser: tseslint.parser,
         parserOptions: {
+            // tsconfigRootDir:import.meta.dirname,
+            tsconfigRootDir: process.cwd(),
+            project: ["./tsconfig.json"],
             sourceType: "module",
-            project: "./tsconfig.json",
         },
+    },
+    plugins: {
+        "@typescript-eslint": tseslint.plugin,
     },
     rules: {
         "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -163,13 +170,6 @@ export const typescriptCore = tslint.config({
     },
 }) as FlatESLintConfig[];
 
-export const typescript: FlatESLintConfig[] = [
-    ...typescriptCore,
-    {
-        files: [GLOB_JS, "**/*.cjs"],
-        rules: {
-            "@typescript-eslint/no-require-imports": "off",
-            "@typescript-eslint/no-var-requires": "off",
-        },
-    },
-];
+export const typescript = defineFlatConfig([
+    ...typescriptFlatESLintConfig,
+]);

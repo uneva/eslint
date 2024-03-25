@@ -1,45 +1,55 @@
 import type { FlatESLintConfig } from "eslint-define-config";
 
-import { hasUnocss, hasVue } from "./env";
+import { defineFlatConfig } from "eslint-define-config";
+import { hasTypeScript, hasUnocss, hasVue } from "./env";
 import {
     ignores,
     javascript,
     typescript,
-    unocss,
     vue,
 } from "./configs";
 
-export type PresetLint = Partial<{
-    vue: boolean
-    unocss: boolean
-}>
+const props:Array<keyof FlatESLintConfig> = [
+    "files",
+    "ignores",
+    "languageOptions",
+    "linterOptions",
+    "plugins",
+    "processor",
+    "rules",
+    "settings",
+];
 
-export function unlint(
-    config: FlatESLintConfig | FlatESLintConfig[] = [],
-    preset: PresetLint = { vue: hasVue, unocss: hasUnocss },
-): FlatESLintConfig[] {
-    const configs = [
-        ...ignores,
-        ...javascript,
-        ...typescript,
-    ];
+export type FastConfig = {
+    typescript: boolean;
+    vue: boolean;
+    unocss: boolean;
+}
 
-    const {
-        vue: enableVue,
-        unocss: enableUnocss,
-    } = preset;
+export function defineFastConfig(configs?: Partial<FastConfig>): FastConfig {
+    return Object.assign({}, {
+        typescript: hasTypeScript,
+        vue: hasVue,
+        unocss: hasUnocss,
+    }, configs);
+}
 
-    if (enableVue) {
-        configs.push(...vue);
-    }
+export function unlint(fast?: Partial<FastConfig> & FlatESLintConfig, ...configs: FlatESLintConfig[]): FlatESLintConfig[] {
+    const config = [...ignores, ...javascript];
+    const fastConfig = defineFastConfig(fast);
 
-    if (enableUnocss) {
-        configs.push(...unocss);
-    }
+    if (fastConfig.typescript) config.push(...typescript);
 
-    if (Object.keys(config).length > 0) {
-        configs.push(...Array.isArray(config) ? config : [config]);
-    }
+    if (fastConfig.vue) config.push(...vue);
 
-    return configs;
+    const effective = props.reduce<FlatESLintConfig>((acc, key) => {
+        if (key in fastConfig) {
+            acc[key] = fastConfig[key as keyof FastConfig] as any;
+        }
+        return acc;
+    }, {});
+
+    config.push(...configs, effective);
+
+    return defineFlatConfig(config);
 }

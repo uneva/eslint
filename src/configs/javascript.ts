@@ -1,24 +1,29 @@
-import type { FlatESLintConfig } from "eslint-define-config";
-
-import { isInEditor } from "../env";
+import { defineFlatConfig } from "eslint-define-config";
 import { pluginUnusedImports } from "../plugins";
+import { isInEditor } from "../env";
 import globals from "globals";
 
-export const javascript: FlatESLintConfig[] = [
+export const javascript = defineFlatConfig([
     {
         languageOptions: {
+            ecmaVersion: "latest",
             globals: {
                 ...globals.browser,
                 ...globals.es2021,
                 ...globals.node,
+                document: "readonly",
+                navigator: "readonly",
+                window: "readonly",
             },
             parserOptions: {
-                ecmaFeatures: {
-                    jsx: true,
-                },
+                ecmaFeatures: { jsx: true },
+                ecmaVersion: "latest",
                 sourceType: "module",
             },
             sourceType: "module",
+        },
+        linterOptions: {
+            reportUnusedDisableDirectives: true,
         },
         plugins: {
             "unused-imports": pluginUnusedImports,
@@ -45,7 +50,7 @@ export const javascript: FlatESLintConfig[] = [
             "no-dupe-else-if": "error",
             "no-dupe-keys": "error",
             "no-duplicate-case": "error",
-            "no-duplicate-imports": "error",
+            "no-duplicate-imports": "off",
             "no-empty-character-class": "error",
             "no-empty-pattern": "error",
             "no-ex-assign": "error",
@@ -363,7 +368,7 @@ export const javascript: FlatESLintConfig[] = [
             "lines-around-comment": "off",
             "lines-between-class-members": ["error", "always", { exceptAfterSingleLine: false }],
             "max-len": ["warn", {
-                code: 120,
+                code: 240,
                 tabWidth: 4,
                 ignoreUrls: true,
                 ignoreComments: false,
@@ -429,15 +434,9 @@ export const javascript: FlatESLintConfig[] = [
         },
     },
     {
-        files: ["**/scripts/*", "**/spec/*", "**/test/*", "**/cli.*"],
+        files: ["**/scripts/*", "**/test/*"],
         rules: {
             "no-console": "off",
         },
     },
-    {
-        files: ["**/*.{test,spec}.js?(x)"],
-        rules: {
-            "no-unused-expressions": "off",
-        },
-    },
-];
+]);

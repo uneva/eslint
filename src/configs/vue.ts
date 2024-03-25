@@ -1,11 +1,15 @@
 import type { FlatESLintConfig, Rules } from "eslint-define-config";
 
-import { GLOB_VUE } from "../globs";
+import { defineFlatConfig } from "eslint-define-config";
+import { typescriptFlatESLintConfig } from "./typescript";
+import { pluginVue } from "../plugins";
 import { isVue3 } from "../env";
-import { typescriptCore } from "./typescript";
-import { parserVue, pluginVue, tslint } from "../plugins";
+import { GLOB_VUE } from "../globs";
 
-const vueShare: Partial<Rules> = {
+import tseslint from "typescript-eslint";
+import parservue from "vue-eslint-parser";
+
+export const vueShare:Partial<Rules> = {
     // Base Rules
     "vue/comment-directive": "error",
     "vue/jsx-uses-vars": "error",
@@ -120,7 +124,7 @@ const vueShare: Partial<Rules> = {
     "vue/custom-event-name-casing": ["error", "camelCase"],
 };
 
-const vue3: Partial<Rules> = {
+export const vue3:Partial<Rules> = {
     ...pluginVue.configs.base.rules,
     ...pluginVue.configs["vue3-essential"].rules,
     ...pluginVue.configs["vue3-strongly-recommended"].rules,
@@ -132,7 +136,7 @@ const vue3: Partial<Rules> = {
     // "vue/enforce-style-attribute":"off",
 };
 
-const vue2: Partial<Rules> = {
+export const vue2:Partial<Rules> = {
     ...pluginVue.configs.base.rules,
     ...pluginVue.configs.essential.rules,
     ...pluginVue.configs["strongly-recommended"].rules,
@@ -140,33 +144,19 @@ const vue2: Partial<Rules> = {
     "vue/component-api-style": ["error", ["options"]],
 };
 
-export const vue: FlatESLintConfig[] = [
-    ...(tslint.config({
-        extends: typescriptCore as any[],
-        files: [GLOB_VUE],
-    }) as any),
-    {
-        files: [GLOB_VUE],
-        languageOptions: {
-            parser: parserVue,
-            parserOptions: {
-                ecmaFeatures: { jsx: true },
-                extraFileExtensions: [".vue"],
-                // parser:tslint.parser,
-                parser: "@typescript-eslint/parser",
-                sourceType: "module",
-            },
-        },
-        plugins: {
-            "@typescript-eslint": tslint.plugin,
-            vue: pluginVue,
-        },
-        processor: pluginVue.processors[".vue"],
-        rules: {
-            ...(isVue3 ? vue3 : vue2),
-            ...vueShare,
+export const vuetsFlatESLintConfig = tseslint.config({
+    extends: typescriptFlatESLintConfig as any,
+    files: [GLOB_VUE],
+    languageOptions: {
+        parserOptions: {
+            ecmaFeatures: { jsx: true },
+            extraFileExtensions: [".vue"],
         },
     },
+})as FlatESLintConfig[];
+
+export const vue = defineFlatConfig([
+    ...vuetsFlatESLintConfig,
     {
         languageOptions: {
             globals: {
@@ -189,8 +179,21 @@ export const vue: FlatESLintConfig[] = [
         plugins: {
             vue: pluginVue,
         },
+    },
+    {
+        files: [GLOB_VUE],
+        languageOptions: {
+            parser: parservue,
+            parserOptions: {
+                ecmaFeatures: { jsx: true },
+                parser: "@typescript-eslint/parser",
+                sourceType: "module",
+            },
+        },
+        processor: pluginVue.processors[".vue"],
         rules: {
-            "vue/no-setup-props-reactivity-loss": "off",
+            ...(isVue3 ? vue3 : vue2),
+            ...vueShare,
         },
     },
-];
+]);
