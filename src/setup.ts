@@ -5,6 +5,7 @@ import { hasTypeScript, hasUnocss, hasVue } from "./env";
 import {
     ignores,
     javascript,
+    jsonc,
     typescript,
     vue,
 } from "./configs";
@@ -49,7 +50,7 @@ export function unlint(fast?: Partial<FastConfig> & FlatESLintConfig, ...configs
         return acc;
     }, {});
 
-    config.push(...configs, effective);
+    config.push(...jsonc, ...configs, effective);
 
     return defineFlatConfig(config);
 }
