@@ -11,9 +11,10 @@ export const typescriptFlatESLintConfig = tseslint.config({
     languageOptions: {
         parser: tseslint.parser,
         parserOptions: {
-            // tsconfigRootDir:import.meta.dirname,
+            EXPERIMENTAL_useProjectService: true,
             tsconfigRootDir: process.cwd(),
-            project: ["./tsconfig.json"],
+            // project: ["./tsconfig.json", "./tsconfig.node.json"],
+            project: true,
             sourceType: "module",
         },
     },

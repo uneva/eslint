@@ -148,6 +148,7 @@ export const vuetsFlatESLintConfig = tseslint.config({
     extends: typescriptFlatESLintConfig as any,
     files: [GLOB_VUE],
     languageOptions: {
+        parser: parservue,
         parserOptions: {
             ecmaFeatures: { jsx: true },
             extraFileExtensions: [".vue"],
