@@ -17,5 +17,8 @@ export const jsonc = defineFlatConfig([
         plugins: {
             jsonc: pluginJsonc as any,
         },
+        rules: {
+            "jsonc/indent": ["error", 4, {}],
+        },
     },
 ]);
