@@ -81,7 +81,7 @@ export const vueShare:Partial<Rules> = {
     "vue/html-closing-bracket-newline": ["error"],
     "vue/html-closing-bracket-spacing": ["error"],
     "vue/html-end-tags": "error",
-    "vue/html-indent": ["error"],
+    "vue/html-indent": ["error", 4],
     "vue/html-quotes": ["error", "double", { avoidEscape: true }],
     "vue/html-self-closing": ["error", {
         html: {
