@@ -51,9 +51,11 @@
     "dependencies": {
         "@unocss/eslint-plugin": "^0.58.6",
         "eslint-define-config": "^2.1.0",
+        "eslint-plugin-jsonc": "^2.14.1",
         "eslint-plugin-unused-imports": "^3.1.0",
         "eslint-plugin-vue": "^9.24.0",
         "globals": "^14.0.0",
+        "jsonc-eslint-parser": "^2.4.0",
         "local-pkg": "^0.5.0",
         "typescript-eslint": "^7.4.0",
         "vue-eslint-parser": "^9.4.2"
