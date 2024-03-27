@@ -4,7 +4,7 @@ import { defineFlatConfig } from "eslint-define-config";
 import { typescriptFlatESLintConfig } from "./typescript";
 import { pluginVue } from "../plugins";
 import { isVue3 } from "../env";
-import { GLOB_VUE } from "../globs";
+import { GLOB_INLINE_ELEMENTS, GLOB_VUE } from "../globs";
 
 import tseslint from "typescript-eslint";
 import parservue from "vue-eslint-parser";
@@ -55,7 +55,6 @@ export const vueShare:Partial<Rules> = {
     "vue/valid-define-emits": "error",
     "vue/valid-define-props": "error",
     "vue/valid-next-tick": "error",
-    "vue/valid-template-root": "error",
     "vue/valid-v-bind": "error",
     "vue/valid-v-cloak": "error",
     "vue/valid-v-else-if": "error",
@@ -102,7 +101,12 @@ export const vueShare:Partial<Rules> = {
     "vue/prop-name-casing": "off",
     "vue/require-default-prop": "off",
     "vue/require-prop-types": "off",
-    "vue/singleline-html-element-content-newline": ["error"],
+    "vue/singleline-html-element-content-newline": ["error", {
+        ignoreWhenNoAttributes: true,
+        ignoreWhenEmpty: true,
+        ignores: GLOB_INLINE_ELEMENTS,
+        externalIgnores: [],
+    }],
     "vue/v-bind-style": "off",
     "vue/v-on-style": "off",
     "vue/v-slot-style": "off",
@@ -130,6 +134,7 @@ export const vue3:Partial<Rules> = {
     ...pluginVue.configs["vue3-strongly-recommended"].rules,
     ...pluginVue.configs["vue3-recommended"].rules,
     "vue/component-api-style": ["error", ["script-setup", "composition", "composition-vue2"]],
+    "vue/valid-template-root": "off",
     "vue/define-emits-declaration": "error",
     "vue/define-macros-order": "off",
     // "vue/define-props-declaration":"off",
@@ -142,6 +147,7 @@ export const vue2:Partial<Rules> = {
     ...pluginVue.configs["strongly-recommended"].rules,
     ...pluginVue.configs.recommended.rules,
     "vue/component-api-style": ["error", ["options"]],
+    "vue/valid-template-root": "error",
 };
 
 export const vuetsFlatESLintConfig = tseslint.config({
