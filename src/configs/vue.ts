@@ -77,7 +77,14 @@ export const vueShare:Partial<Rules> = {
         singleline: "beside",
         multiline: "below",
     }],
-    "vue/html-closing-bracket-newline": ["error"],
+    "vue/html-closing-bracket-newline": ["error", {
+        singleline: "never",
+        multiline: "never",
+        selfClosingTag: {
+            singleline: "never",
+            multiline: "always",
+        },
+    }],
     "vue/html-closing-bracket-spacing": ["error"],
     "vue/html-end-tags": "error",
     "vue/html-indent": ["error", 4],
