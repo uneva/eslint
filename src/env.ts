@@ -14,6 +14,6 @@ export const isVue3 = getVueVersion() === 3;
 
 export const hasTypeScript = hasAnyPackages(packages.PACKAGE_NAME_TYPESCRIPT);
 
-export const hasVue = hasAnyPackages(packages.PACKAGE_NAME_VUE);
+export const hasVue = hasAnyPackages([packages.PACKAGE_NAME_VITEPRESS, packages.PACKAGE_NAME_VUE]);
 
 export const hasUnocss = hasAnyPackages(packages.PACKAGE_NAME_UNOCSS);
