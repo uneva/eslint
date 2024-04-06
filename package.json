@@ -26,7 +26,7 @@
         "access": "public"
     },
     "scripts": {
-        "start": "esno ./test/index.ts",
+        "esno": "esno",
         "build": "tsup",
         "dev": "tsup --watch & eslint-flat-config-viewer",
         "watch": "tsup --watch",
