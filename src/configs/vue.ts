@@ -9,7 +9,7 @@ import { GLOB_INLINE_ELEMENTS, GLOB_VUE } from "../globs";
 import tseslint from "typescript-eslint";
 import parservue from "vue-eslint-parser";
 
-export const vueShare:Partial<Rules> = {
+export const vueShare: Partial<Rules> = {
     // Base Rules
     "vue/comment-directive": "error",
     "vue/jsx-uses-vars": "error",
@@ -135,7 +135,7 @@ export const vueShare:Partial<Rules> = {
     "vue/custom-event-name-casing": ["error", "camelCase"],
 };
 
-export const vue3:Partial<Rules> = {
+export const vue3: Partial<Rules> = {
     ...pluginVue.configs.base.rules,
     ...pluginVue.configs["vue3-essential"].rules,
     ...pluginVue.configs["vue3-strongly-recommended"].rules,
@@ -148,7 +148,7 @@ export const vue3:Partial<Rules> = {
     // "vue/enforce-style-attribute":"off",
 };
 
-export const vue2:Partial<Rules> = {
+export const vue2: Partial<Rules> = {
     ...pluginVue.configs.base.rules,
     ...pluginVue.configs.essential.rules,
     ...pluginVue.configs["strongly-recommended"].rules,
@@ -167,7 +167,7 @@ export const vuetsFlatESLintConfig = tseslint.config({
             extraFileExtensions: [".vue"],
         },
     },
-})as FlatESLintConfig[];
+}) as FlatESLintConfig[];
 
 export const vue = defineFlatConfig([
     ...vuetsFlatESLintConfig,

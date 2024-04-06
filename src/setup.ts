@@ -11,7 +11,7 @@ import {
     vue,
 } from "./configs";
 
-const props:Array<keyof FlatESLintConfig> = [
+const props: Array<keyof FlatESLintConfig> = [
     "files",
     "ignores",
     "languageOptions",
@@ -26,7 +26,7 @@ export type FastConfig = {
     typescript: boolean;
     vue: boolean;
     unocss: boolean;
-}
+};
 
 export function defineFastConfig(configs?: Partial<FastConfig>): FastConfig {
     return Object.assign({}, {
