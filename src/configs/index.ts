@@ -3,3 +3,4 @@ export * from "./javascript";
 export * from "./typescript";
 export * from "./jsonc";
 export * from "./vue";
+export * from "./stylistic";
