@@ -28,9 +28,9 @@
     "scripts": {
         "esno": "esno",
         "build": "tsup",
-        "dev": "tsup --watch & eslint-flat-config-viewer",
+        "dev": "tsup --watch & eslint --inspect-config",
         "watch": "tsup --watch",
-        "view": "eslint-flat-config-viewer",
+        "preview": "eslint --inspect-config",
         "lint": "eslint .",
         "lint:fix": "pnpm run lint --fix",
         "release": "bumpp && pnpm publish",
