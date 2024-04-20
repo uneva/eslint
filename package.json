@@ -39,10 +39,10 @@
     },
     "devDependencies": {
         "@eslint/config-inspector": "^0.4.6",
-        "@types/eslint": "^8.56.9",
+        "@types/eslint": "^8.56.10",
         "@types/node": "^20.12.7",
         "bumpp": "^9.4.0",
-        "eslint": "^9.0.0",
+        "eslint": "^9.1.0",
         "esno": "^4.7.0",
         "tsup": "^8.0.2",
         "typescript": "^5.4.5",
