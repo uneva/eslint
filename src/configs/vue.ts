@@ -129,6 +129,7 @@ export const vueShare: Partial<Rules> = {
     // Uncategorized
     "vue/block-lang": "off",
     "vue/block-order": ["error", { order: ["template", "script", "style"] }],
+    "vue/component-tags-order": "off",
     "vue/block-tag-newline": ["error"],
     "vue/component-name-in-template-casing": ["error", "kebab-case"],
     "vue/component-options-name-casing": ["error", "PascalCase"],
