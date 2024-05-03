@@ -38,7 +38,7 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@eslint/config-inspector": "^0.4.7",
+        "@eslint/config-inspector": "^0.4.8",
         "@types/eslint": "^8.56.10",
         "@types/node": "^20.12.8",
         "bumpp": "^9.4.1",
