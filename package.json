@@ -40,7 +40,7 @@
     "devDependencies": {
         "@eslint/config-inspector": "^0.4.8",
         "@types/eslint": "^8.56.10",
-        "@types/node": "^20.12.10",
+        "@types/node": "^20.12.11",
         "bumpp": "^9.4.1",
         "eslint": "^9.2.0",
         "esno": "^4.7.0",
