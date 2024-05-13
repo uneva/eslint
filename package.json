@@ -1,7 +1,7 @@
 {
     "name": "@uneva/eslint",
     "type": "module",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "description": "Flat ESLint Configs",
     "author": "MaggotCode <udp.pkg.loss@gmail.com> (https://github.com/maggot-code)",
     "homepage": "https://github.com/uneva/eslint",
