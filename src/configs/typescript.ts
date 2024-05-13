@@ -11,7 +11,7 @@ export const typescriptFlatESLintConfig = tseslint.config({
     languageOptions: {
         parser: tseslint.parser,
         parserOptions: {
-            EXPERIMENTAL_useProjectService: true,
+            EXPERIMENTAL_useProjectService: false,
             tsconfigRootDir: process.cwd(),
             // project: ["./tsconfig.json", "./tsconfig.node.json"],
             project: true,
