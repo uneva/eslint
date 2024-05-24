@@ -11,9 +11,13 @@ export const typescriptFlatESLintConfig = tseslint.config({
     languageOptions: {
         parser: tseslint.parser,
         parserOptions: {
-            EXPERIMENTAL_useProjectService: false,
+            EXPERIMENTAL_useProjectService: true,
+            allowAutomaticSingleRunInference: true,
+            warnOnUnsupportedTypeScriptVersion: false,
             tsconfigRootDir: process.cwd(),
-            // project: ["./tsconfig.json", "./tsconfig.node.json"],
+            cacheLifetime: {
+                glob: "Infinity",
+            },
             project: true,
             sourceType: "module",
         },
