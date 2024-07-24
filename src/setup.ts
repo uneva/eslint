@@ -1,7 +1,8 @@
-import type { FlatESLintConfig } from "eslint-define-config";
+import type { Linter } from "eslint";
+import type { FlatConfigOptions } from "./types";
 
-import { defineFlatConfig } from "eslint-define-config";
-import { hasTypeScript, hasUnocss, hasVue } from "./env";
+import { isPackageExists } from "local-pkg";
+
 import {
     ignores,
     javascript,
@@ -11,52 +12,104 @@ import {
     vue,
 } from "./configs";
 
-const props: Array<keyof FlatESLintConfig> = [
-    "files",
-    "ignores",
-    "languageOptions",
-    "linterOptions",
-    "plugins",
-    "processor",
-    "rules",
-    "settings",
+const VuePackages = [
+    "vue",
+    "vitepress",
 ];
 
-export type FastConfig = {
-    typescript: boolean;
-    vue: boolean;
-    unocss: boolean;
-};
+export const hasVue = VuePackages.some((pkg) => isPackageExists(pkg));
 
-export function defineFastConfig(configs?: Partial<FastConfig>): FastConfig {
-    return Object.assign({}, {
-        typescript: hasTypeScript,
-        vue: hasVue,
-        unocss: hasUnocss,
-    }, configs);
+export const hasTypeScript = isPackageExists("typescript");
+
+export const hasInEditor = !!(
+    (process.env.VSCODE_PID
+    || process.env.VSCODE_CWD
+    || process.env.JETBRAINS_IDE
+    || process.env.VIM
+    || process.env.NVIM
+    ) && !process.env.CI
+);
+
+export function unlint(
+    options: FlatConfigOptions = {},
+    ...extendConfigs: Linter.FlatConfig[]
+): Linter.FlatConfig[] {
+    const {
+        isInEditor = hasInEditor,
+        typescript: maybeTypeScript = hasTypeScript,
+        vue: maybeVue = hasVue,
+    } = options;
+
+    const stylisticInOptions = typeof options.stylistic === "object" ? options.stylistic : {};
+    const stylisticOptions = options.stylistic === false
+        ? false
+        : stylisticInOptions;
+
+
+    const configs: Linter.FlatConfig[] = [
+        ...ignores(),
+        ...javascript({ isInEditor, overrides: getOverrides(options, "javascript") }),
+    ];
+
+    if (maybeTypeScript) {
+        configs.push(...typescript({
+            overrides: getOverrides(options, "typescript"),
+        }));
+    }
+
+    if (stylisticOptions) {
+        configs.push(...stylistic({
+            ...stylisticOptions,
+            overrides: getOverrides(options, "stylistic"),
+        }));
+    }
+
+    if (maybeVue) {
+        configs.push(...vue({
+            ...resolveSubOptions(options, "vue"),
+            overrides: getOverrides(options, "vue"),
+            stylistic: stylisticOptions,
+            typescript: !!maybeTypeScript,
+        }));
+    }
+
+    if (options.jsonc ?? true) {
+        configs.push(
+            ...jsonc({
+                overrides: getOverrides(options, "jsonc"),
+                stylistic: stylisticOptions,
+            }),
+            // sortPackageJson(),
+            // sortTsconfig(),
+        );
+    }
+
+    if (Array.isArray(extendConfigs))configs.push(...extendConfigs);
+
+    return configs;
 }
 
-export function unlint(fast?: Partial<FastConfig> & FlatESLintConfig, ...configs: FlatESLintConfig[]): FlatESLintConfig[] {
-    const config = [...ignores, ...javascript];
-    const fastConfig = defineFastConfig(fast);
 
-    if (fastConfig.typescript) config.push(...typescript);
+export type ResolvedOptions<T> = T extends boolean
+    ? never
+    : NonNullable<T>;
+export function resolveSubOptions<K extends keyof FlatConfigOptions>(
+    options: FlatConfigOptions,
+    key: K,
+): ResolvedOptions<FlatConfigOptions[K]> {
+    return typeof options[key] === "boolean"
+        ? {} as any
+        : options[key] || {};
+}
 
-    if (fastConfig.vue) config.push(...vue);
-
-    const effective = props.reduce<FlatESLintConfig>((acc, key) => {
-        if (key in fastConfig) {
-            acc[key] = fastConfig[key as keyof FastConfig] as any;
-        }
-        return acc;
-    }, {});
-
-    config.push(
-        ...jsonc,
-        ...configs,
-        ...stylistic,
-        effective,
-    );
-
-    return defineFlatConfig(config);
+export function getOverrides<K extends keyof FlatConfigOptions>(
+    options: FlatConfigOptions,
+    key: K,
+) {
+    const sub = resolveSubOptions(options, key);
+    const subOverrides = sub?.overrides || {};
+    return {
+        ...(options.overrides as any)?.[key],
+        ...subOverrides as any,
+    };
 }

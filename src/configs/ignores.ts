@@ -1,6 +1,12 @@
-import { defineFlatConfig } from "eslint-define-config";
+import type { Linter } from "eslint";
+
 import { GLOB_EXCLUDE } from "../globs";
 
-export const ignores = defineFlatConfig([
-    { ignores: GLOB_EXCLUDE },
-]);
+export function ignores(): Linter.FlatConfig[] {
+    return [
+        {
+            name: "uneva/ignores",
+            ignores: GLOB_EXCLUDE,
+        },
+    ];
+}

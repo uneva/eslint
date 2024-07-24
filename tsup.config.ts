@@ -6,5 +6,5 @@ export default defineConfig({
     shims: true,
     dts: true,
     clean: true,
-    minify: true,
+    minify: false,
 });

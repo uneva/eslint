@@ -1,9 +1,8 @@
 import { unlint } from "./setup";
 
-export * from "./configs";
-export * from "./env";
+export * from "./types";
 export * from "./globs";
-export * from "./plugins";
+export * from "./configs";
 export * from "./setup";
 
 export default unlint;
