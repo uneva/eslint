@@ -1,35 +1,48 @@
 import type { Linter } from "eslint";
-import type { Options as SFCoptions } from "eslint-processor-vue-blocks";
 import type { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 
-export type StylisticPickRules = Pick<StylisticCustomizeOptions, "indent" | "quotes" | "jsx" | "semi">;
+export type InteropDefault<T> = T extends { default: infer U } ? U : T;
 
-export interface FlatConfigIsIneditor { isInEditor?: boolean }
+export type StylisticFocus = Pick<StylisticCustomizeOptions, "indent" | "quotes" | "jsx" | "semi">;
 
-export interface FlatConfigHasTypeScript { typescript?: boolean }
+export type FlatConfigItem = Omit<Linter.Config, "plugins"> & {
+    plugins?: Record<string, any>;
+};
 
-export interface FlatConfigOverrides {
-    overrides?: Linter.FlatConfig["rules"];
+export interface OptionsOverrides {
+    overrides?: FlatConfigItem["rules"];
 }
 
-export interface FlatConfigFiles {
-    files?: string[];
-}
-
-export interface FlatConfigStylistic {
-    stylistic?: boolean | StylisticPickRules;
-}
-
-export interface FlatConfigVue extends FlatConfigOverrides {
-    sfc?: boolean | SFCoptions;
-    version?: 2 | 3;
-}
-
-export interface FlatConfigOptions extends FlatConfigOverrides {
-    javascript?: FlatConfigOverrides;
-    typescript?: boolean;
-    vue?: boolean | FlatConfigVue;
-    jsonc?: boolean | FlatConfigOverrides;
-    stylistic?: boolean | (StylisticPickRules & FlatConfigOverrides);
+export interface OptionsIsInEditor {
     isInEditor?: boolean;
 }
+
+export interface OptionsProjectType {
+    type?: "app" | "lib";
+}
+
+export interface OptionsComponentExts {
+    componentExts?: string[];
+}
+
+export interface OptionsFiles {
+    files?: (string | string[])[];
+};
+
+export interface OptionsStylisticOverrides extends StylisticFocus {};
+export type OptionsStylistic = OptionsOverrides & {
+    stylistic?: boolean | OptionsStylisticOverrides;
+};
+
+export type OptionsJavascript = OptionsOverrides & OptionsIsInEditor;
+
+export type OptionsTypescript = OptionsOverrides & OptionsFiles & OptionsComponentExts & OptionsProjectType;
+
+export type OptionsVue = OptionsOverrides & OptionsFiles;
+
+export interface OptionsUseConfigs extends OptionsComponentExts, OptionsProjectType {
+    typescript?: boolean | OptionsTypescript;
+    stylistic?: boolean | OptionsStylisticOverrides;
+    sortKeys?: boolean;
+    isInEditor?: boolean;
+};

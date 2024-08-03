@@ -26,7 +26,6 @@
         "access": "public"
     },
     "scripts": {
-        "esno": "esno",
         "build": "tsup",
         "build:min": "tsup --minify",
         "dev": "tsup --watch & eslint --inspect-config",
@@ -35,33 +34,28 @@
         "lint": "eslint .",
         "lint:fix": "pnpm run lint --fix",
         "release": "bumpp && pnpm publish",
-        "test": "vitest",
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
-        "@eslint/config-inspector": "^0.4.12",
-        "@eslint/js": "^9.7.0",
+        "@eslint/js": "^9.8.0",
+        "@types/eslint": "^9.6.0",
         "@types/eslint__js": "^8.42.3",
-        "@types/node": "^20.14.12",
-        "bumpp": "^9.4.1",
-        "eslint": "^9.7.0",
-        "esno": "^4.7.0",
-        "tsup": "^8.2.2",
-        "typescript": "^5.5.4",
-        "vitest": "^1.6.0"
+        "@types/node": "^22.1.0",
+        "bumpp": "^9.4.2",
+        "eslint": "^9.8.0",
+        "tsup": "^8.2.4",
+        "typescript": "^5.5.4"
     },
     "dependencies": {
-        "@stylistic/eslint-plugin": "^2.3.0",
-        "@typescript-eslint/parser": "^7.17.0",
-        "eslint-merge-processors": "^0.1.0",
-        "eslint-plugin-jsonc": "^2.16.0",
+        "@stylistic/eslint-plugin": "^2.6.1",
+        "@typescript-eslint/parser": "^8.0.0",
+        "eslint-plugin-antfu": "^2.3.4",
+        "eslint-plugin-command": "^0.2.3",
         "eslint-plugin-unused-imports": "^4.0.1",
         "eslint-plugin-vue": "^9.27.0",
-        "eslint-processor-vue-blocks": "^0.1.2",
-        "globals": "^15.8.0",
-        "jsonc-eslint-parser": "^2.4.0",
+        "globals": "^15.9.0",
         "local-pkg": "^0.5.0",
-        "typescript-eslint": "^7.17.0",
+        "typescript-eslint": "^8.0.0",
         "vue-eslint-parser": "^9.4.3"
     }
 }

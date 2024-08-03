@@ -1,8 +1,8 @@
-import type { Linter } from "eslint";
+import type { FlatConfigItem } from "../types";
 
 import { GLOB_EXCLUDE } from "../globs";
 
-export function ignores(): Linter.FlatConfig[] {
+export function ignores(): FlatConfigItem[] {
     return [
         {
             name: "uneva/ignores",

@@ -1,8 +1,10 @@
-import { unlint } from "./setup";
+import { unlint } from "./use";
 
-export * from "./types";
 export * from "./globs";
+export * from "./types";
+export * from "./state";
+
 export * from "./configs";
-export * from "./setup";
+export * from "./use";
 
 export default unlint;
