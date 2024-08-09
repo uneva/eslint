@@ -22,6 +22,7 @@ import * as _pluginVue from "eslint-plugin-vue";
 export const pluginVue: any = interopDefault(_pluginVue);
 
 export * as parserVue from "vue-eslint-parser";
+export * as processorVueBlocks from "eslint-processor-vue-blocks";
 export * as parserTypescript from "@typescript-eslint/parser";
 
 export * as parserJsonc from "jsonc-eslint-parser";

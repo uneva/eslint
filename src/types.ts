@@ -26,10 +26,10 @@ export interface OptionsComponentExts {
 }
 
 export interface OptionsFiles {
-    files?: (string | string[])[];
-};
+    files?: Array<string | string[]>;
+}
 
-export interface OptionsStylisticOverrides extends StylisticFocus {};
+export interface OptionsStylisticOverrides extends StylisticFocus {}
 export type OptionsStylistic = OptionsOverrides & {
     stylistic?: boolean | OptionsStylisticOverrides;
 };
@@ -38,7 +38,7 @@ export type OptionsJavascript = OptionsOverrides & OptionsIsInEditor;
 
 export type OptionsTypescript = OptionsOverrides & OptionsFiles & OptionsComponentExts & OptionsProjectType;
 
-export type OptionsVue = OptionsOverrides & OptionsFiles;
+export type OptionsVue = OptionsStylistic & OptionsFiles;
 
 export type OptionsJsonc = OptionsFiles & OptionsStylistic;
 
@@ -48,4 +48,4 @@ export interface OptionsUseConfigs extends OptionsComponentExts, OptionsProjectT
     jsonc?: boolean | OptionsJsonc;
     sortKeys?: boolean;
     isInEditor?: boolean;
-};
+}

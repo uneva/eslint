@@ -5,17 +5,17 @@ import type {
 } from "./types";
 
 import {
-    isInEditor,
     hasTypescript,
     hasVue,
+    isInEditor,
 } from "./state";
 
 import {
     ignores,
+    javascript,
     jsdoc,
     jsonc,
     stylistic,
-    javascript,
     typescript,
     vue,
 } from "./configs";
@@ -40,15 +40,19 @@ export function unlint(config?:(OptionsUseConfigs & FlatConfigItem), ...group: F
 
     if (inferStylistic)configs.push(...stylistic({ stylistic: config?.stylistic }));
 
-    if (hasTypescript)configs.push(...typescript({
-        ...inferTypescript,
-        componentExts: inferComponentExts,
-        type: inferType,
-    }));
+    if (hasTypescript) {
+        configs.push(...typescript({
+            ...inferTypescript,
+            componentExts: inferComponentExts,
+            type: inferType,
+        }));
+    }
 
-    if (hasVue)configs.push(...vue({
-        files: config?.files,
-    }));
+    if (hasVue) {
+        configs.push(...vue({
+            files: config?.files,
+        }));
+    }
 
     if (Array.isArray(group))configs.push(...group);
 

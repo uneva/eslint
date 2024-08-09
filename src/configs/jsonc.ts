@@ -28,14 +28,16 @@ export function jsonc(options?: OptionsJsonc): FlatConfigItem[] {
         },
     ];
 
-    if (options?.stylistic)configs.push({
-        name: "uneva/jsonc/stylistic",
-        rules: {
-            "jsonc/indent": ["error", indent],
-            "jsonc/quote-props": "error",
-            "jsonc/quotes": "error",
-        },
-    });
+    if (options?.stylistic) {
+        configs.push({
+            name: "uneva/jsonc/stylistic",
+            rules: {
+                "jsonc/indent": ["error", indent],
+                "jsonc/quote-props": "error",
+                "jsonc/quotes": "error",
+            },
+        });
+    }
 
     return configs;
 }

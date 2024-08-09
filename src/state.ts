@@ -1,5 +1,5 @@
 import process from "node:process";
-import { isPackageExists, getPackageInfoSync } from "local-pkg";
+import { getPackageInfoSync, isPackageExists } from "local-pkg";
 
 export const isInEditor = !!(
     (process.env.VSCODE_PID
@@ -16,6 +16,8 @@ export function getVueVersion(): 2 | 3 {
     return has ? version : 3;
 }
 
+export const isVue2 = getVueVersion() === 2;
+export const isVue3 = getVueVersion() === 3;
 export const hasVue = isPackageExists("vue");
 export const hasTypescript = isPackageExists("typescript");
 export const hasUnocss = isPackageExists("unocss");
