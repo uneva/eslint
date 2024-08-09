@@ -56,7 +56,6 @@ export function typescriptSetup(options?: OptionsFiles): FlatConfigItem[] {
             "@typescript-eslint/no-empty-function": ["error", {
                 allow: ["arrowFunctions", "functions", "methods"],
             }],
-            "@typescript-eslint/no-empty-interface": "off",
             "@typescript-eslint/no-explicit-any": "off",
             "@typescript-eslint/no-extra-non-null-assertion": "off",
             "@typescript-eslint/no-extraneous-class": "off",
@@ -67,7 +66,6 @@ export function typescriptSetup(options?: OptionsFiles): FlatConfigItem[] {
             "@typescript-eslint/no-invalid-this": "off",
             "@typescript-eslint/no-invalid-void-type": "error",
             "@typescript-eslint/no-loop-func": "error",
-            "@typescript-eslint/no-loss-of-precision": "error",
             "@typescript-eslint/no-magic-numbers": "off",
             "@typescript-eslint/no-meaningless-void-operator": "off",
             "@typescript-eslint/no-misused-new": "off",
@@ -136,7 +134,6 @@ export function typescriptSetup(options?: OptionsFiles): FlatConfigItem[] {
             "@typescript-eslint/prefer-regexp-exec": "off",
             "@typescript-eslint/prefer-return-this-type": "off",
             "@typescript-eslint/prefer-string-starts-ends-with": "off",
-            "@typescript-eslint/prefer-ts-expect-error": "off",
             "@typescript-eslint/promise-function-async": "off",
             // "@typescript-eslint/quotes": ["error", "double", { avoidEscape: true, allowTemplateLiterals: false }],
             "@typescript-eslint/require-array-sort-compare": "off",
@@ -144,7 +141,6 @@ export function typescriptSetup(options?: OptionsFiles): FlatConfigItem[] {
             // "@typescript-eslint/restrict-plus-operands": "error",
             "@typescript-eslint/restrict-template-expressions": "off",
             "@typescript-eslint/return-await": "off",
-            "@typescript-eslint/sort-type-constituents": "off",
             "@typescript-eslint/strict-boolean-expressions": "off",
             "@typescript-eslint/switch-exhaustiveness-check": "off",
             "@typescript-eslint/triple-slash-reference": ["error", {

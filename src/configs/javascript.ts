@@ -131,7 +131,6 @@ export function javascript(options?: OptionsJavascript): FlatConfigItem[] {
                 "max-nested-callbacks": "off",
                 "max-params": ["off", 3],
                 "max-statements": ["off", 10],
-                "multiline-comment-style": ["off", "starred-block"],
                 "new-cap": ["error", {
                     newIsCap: true,
                     newIsCapExceptions: [],
