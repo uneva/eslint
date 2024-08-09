@@ -12,6 +12,8 @@ import {
 
 import {
     ignores,
+    jsdoc,
+    jsonc,
     stylistic,
     javascript,
     typescript,
@@ -22,13 +24,17 @@ export function unlint(config?:(OptionsUseConfigs & FlatConfigItem), ...group: F
     const inferType = config?.type || "app";
     const inferComponentExts = Array.isArray(config?.componentExts) ? config.componentExts : [];
     const inferStylistic = typeof config?.stylistic === "object" ? true : !!config?.stylistic;
+    const inferJsonc = typeof config?.jsonc === "object" ? true : !!config?.jsonc;
     const inferTypescript = config?.typescript === false ? {} : typeof config?.typescript === "object" ? config.typescript : {};
     const inferIsInEditor = config?.isInEditor || isInEditor;
 
     const configs: Linter.Config[] = [
         ...ignores(),
+        ...jsdoc({ stylistic: inferStylistic }),
         ...javascript({ isInEditor: inferIsInEditor }),
     ];
+
+    if (inferJsonc)configs.push(...jsonc({ stylistic: config?.stylistic }));
 
     if (hasVue)inferComponentExts.push("vue");
 

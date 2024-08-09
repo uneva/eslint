@@ -40,9 +40,12 @@ export type OptionsTypescript = OptionsOverrides & OptionsFiles & OptionsCompone
 
 export type OptionsVue = OptionsOverrides & OptionsFiles;
 
+export type OptionsJsonc = OptionsFiles & OptionsStylistic;
+
 export interface OptionsUseConfigs extends OptionsComponentExts, OptionsProjectType {
     typescript?: boolean | OptionsTypescript;
     stylistic?: boolean | OptionsStylisticOverrides;
+    jsonc?: boolean | OptionsJsonc;
     sortKeys?: boolean;
     isInEditor?: boolean;
 };
