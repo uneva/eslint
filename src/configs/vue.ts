@@ -12,7 +12,7 @@ export function vue(options?: OptionsVue): FlatConfigItem[] {
     const configs: FlatConfigItem[] = [];
 
     if (hasTypescript) {
-        configs.push(tseslint.config({
+        configs.push(...tseslint.config({
             extends: typescriptSetup({ files }) as any[],
         }) as any);
     }
