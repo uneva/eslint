@@ -40,7 +40,7 @@
         "@eslint/js": "^9.9.0",
         "@types/eslint": "^9.6.0",
         "@types/eslint__js": "^8.42.3",
-        "@types/node": "^22.3.0",
+        "@types/node": "^22.4.0",
         "bumpp": "^9.5.1",
         "eslint": "^9.9.0",
         "tsup": "^8.2.4",
@@ -48,7 +48,7 @@
         "vue": "^3.4.38"
     },
     "dependencies": {
-        "@stylistic/eslint-plugin": "^2.6.2",
+        "@stylistic/eslint-plugin": "^2.6.4",
         "@typescript-eslint/parser": "^8.1.0",
         "eslint-merge-processors": "^0.1.0",
         "eslint-plugin-antfu": "^2.3.5",
