@@ -297,12 +297,13 @@ export function javascript(options?: OptionsJavascript): FlatConfigItem[] {
                 "vars-on-top": "error",
                 yoda: ["error", "never", { exceptRange: true }],
 
-                "unused-imports/no-unused-imports": (options?.isInEditor || isInEditor) ? "warn" : "off",
+                "unused-imports/no-unused-imports": (options?.isInEditor || isInEditor) ? "off" : "warn",
                 "unused-imports/no-unused-vars": ["error", {
-                    vars: "all",
-                    varsIgnorePattern: "^_",
                     args: "after-used",
                     argsIgnorePattern: "^_",
+                    ignoreRestSiblings: true,
+                    vars: "all",
+                    varsIgnorePattern: "^_",
                 }],
                 ...options?.overrides || {},
             },
