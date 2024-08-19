@@ -91,7 +91,7 @@ export function javascript(options?: OptionsJavascript): FlatConfigItem[] {
                 "no-unsafe-negation": "error",
                 "no-unsafe-optional-chaining": "error",
                 "no-unused-private-class-members": "error",
-                "no-unused-vars": ["error", { vars: "all", args: "after-used", ignoreRestSiblings: true }],
+                "no-unused-vars": "off",
                 "no-use-before-define": ["error", { functions: false, classes: false, variables: false }],
                 "no-useless-backreference": "error",
                 "require-atomic-updates": "error",
@@ -299,8 +299,10 @@ export function javascript(options?: OptionsJavascript): FlatConfigItem[] {
 
                 "unused-imports/no-unused-imports": (options?.isInEditor || isInEditor) ? "warn" : "off",
                 "unused-imports/no-unused-vars": ["error", {
+                    vars: "all",
+                    varsIgnorePattern: "^_",
                     args: "after-used",
-                    ignoreRestSiblings: true,
+                    argsIgnorePattern: "^_",
                 }],
                 ...options?.overrides || {},
             },
