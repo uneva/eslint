@@ -31,6 +31,7 @@
         "dev": "tsup --watch & eslint --inspect-config",
         "watch": "tsup --watch",
         "preview": "eslint --inspect-config",
+        "preview:build":"pnpm build:min && npx @eslint/config-inspector build",
         "lint": "eslint .",
         "lint:fix": "pnpm run lint --fix",
         "release": "bumpp && pnpm publish",
