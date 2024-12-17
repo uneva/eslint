@@ -29,7 +29,7 @@ export function unlint(config?:(OptionsUseConfigs & FlatConfigItem), ...group: F
     const inferIsInEditor = config?.isInEditor || isInEditor;
 
     const configs: Linter.Config[] = [
-        ...ignores(),
+        ...ignores(config?.ignores || []),
         ...jsdoc({ stylistic: inferStylistic }),
         ...javascript({ isInEditor: inferIsInEditor }),
     ];
