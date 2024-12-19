@@ -11,6 +11,7 @@ import {
 } from "./state";
 
 import {
+    formatters,
     ignores,
     javascript,
     jsdoc,
@@ -26,6 +27,7 @@ export function unlint(config?:(OptionsUseConfigs & FlatConfigItem), ...group: F
     const inferStylistic = typeof config?.stylistic === "object" ? true : !!config?.stylistic;
     const inferJsonc = typeof config?.jsonc === "object" ? true : !!config?.jsonc;
     const inferTypescript = config?.typescript === false ? {} : typeof config?.typescript === "object" ? config.typescript : {};
+    const inferFormatters = config?.formatters !== false;
     const inferIsInEditor = config?.isInEditor || isInEditor;
 
     const configs: Linter.Config[] = [
@@ -51,6 +53,13 @@ export function unlint(config?:(OptionsUseConfigs & FlatConfigItem), ...group: F
     if (hasVue) {
         configs.push(...vue({
             files: config?.files,
+        }));
+    }
+
+    if (inferFormatters) {
+        configs.push(...formatters({
+            css: true,
+            html: true,
         }));
     }
 
