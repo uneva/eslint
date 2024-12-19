@@ -4,4 +4,6 @@ export default unlint({
     formatters: true,
     stylistic: true,
     jsonc: true,
+    typescript: true,
+    sortKeys: true,
 });
