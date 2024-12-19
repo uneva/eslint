@@ -29,6 +29,11 @@ export interface OptionsFiles {
     files?: Array<string | string[]>;
 }
 
+export interface OptionsFormatters {
+    css?: boolean;
+    html?: boolean;
+}
+
 export interface OptionsStylisticOverrides extends StylisticFocus {}
 export type OptionsStylistic = OptionsOverrides & {
     stylistic?: boolean | OptionsStylisticOverrides;
@@ -45,6 +50,7 @@ export type OptionsJsonc = OptionsFiles & OptionsStylistic;
 export interface OptionsUseConfigs extends OptionsComponentExts, OptionsProjectType {
     typescript?: boolean | OptionsTypescript;
     stylistic?: boolean | OptionsStylisticOverrides;
+    formatters?: boolean;
     jsonc?: boolean | OptionsJsonc;
     sortKeys?: boolean;
     isInEditor?: boolean;

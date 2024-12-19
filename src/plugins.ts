@@ -18,6 +18,10 @@ export const pluginJsdoc: any = interopDefault(_pluginJsdoc);
 import * as _pluginStylistic from "@stylistic/eslint-plugin";
 export const pluginStylistic: any = interopDefault(_pluginStylistic);
 
+
+import * as _pluginFormat from "eslint-plugin-format";
+export const pluginFormat: any = interopDefault(_pluginFormat);
+
 import * as _pluginVue from "eslint-plugin-vue";
 export const pluginVue: any = interopDefault(_pluginVue);
 
