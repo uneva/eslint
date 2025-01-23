@@ -41,8 +41,8 @@
         "@eslint/js": "^9.18.0",
         "@types/eslint": "^9.6.1",
         "@types/eslint__js": "^8.42.3",
-        "@types/node": "^22.10.7",
-        "bumpp": "^9.10.1",
+        "@types/node": "^22.10.9",
+        "bumpp": "^9.10.2",
         "eslint": "^9.18.0",
         "tsup": "^8.3.5",
         "typescript": "^5.7.3",
@@ -50,7 +50,7 @@
     },
     "dependencies": {
         "@stylistic/eslint-plugin": "^2.13.0",
-        "@typescript-eslint/parser": "^8.20.0",
+        "@typescript-eslint/parser": "^8.21.0",
         "eslint-merge-processors": "^1.0.0",
         "eslint-plugin-antfu": "^2.7.0",
         "eslint-plugin-command": "^2.1.0",
@@ -63,7 +63,7 @@
         "globals": "^15.14.0",
         "jsonc-eslint-parser": "^2.4.0",
         "local-pkg": "^1.0.0",
-        "typescript-eslint": "^8.20.0",
+        "typescript-eslint": "^8.21.0",
         "vue-eslint-parser": "^9.4.3"
     }
 }
